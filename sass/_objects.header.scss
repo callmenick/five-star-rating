@@ -1,0 +1,44 @@
+/* -----------------------------------------------------------------------------
+
+  HEADER OBJECT
+  
+----------------------------------------------------------------------------- */
+
+.o-header {
+  margin: 0;
+  padding: 0;
+}
+
+.o-header-nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: $color--theme;
+}
+
+.o-header-nav__link {
+  padding: 12px;
+  color: #fff;
+}
+
+.o-header-nav__link:hover {
+  color: #fff;
+  background-color: $color--theme-dark;
+}
+
+.o-header__title {
+  margin: 24px;
+  padding: 0;
+  color: $color--neutral-light;
+  font-size: $font-size--xlarge;
+  font-weight: 300;
+  text-align: center;
+}
+
+@media all and ( min-width: $breakpoint--small ) {
+  
+  .o-header__title {
+    margin: 36px;
+    font-size: $font-size--ultra;
+  }
+
+}

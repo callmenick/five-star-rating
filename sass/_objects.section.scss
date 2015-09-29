@@ -1,0 +1,22 @@
+/* -----------------------------------------------------------------------------
+
+  SECTION OBJECT
+  
+----------------------------------------------------------------------------- */
+
+.o-section {
+  margin-bottom: 24px;
+}
+
+.o-section:last-child {
+  margin-bottom: 0;
+}
+
+
+@media all and ( min-width: $breakpoint--medium ) {
+  
+  .o-section {
+    margin-bottom: 48px;
+  }
+
+}

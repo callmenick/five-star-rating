@@ -1,0 +1,26 @@
+/* -----------------------------------------------------------------------------
+
+  FOOTER OBJECT
+  
+----------------------------------------------------------------------------- */
+
+.o-footer {
+  padding: 12px 0;
+  text-align: center;
+}
+
+@media all and ( min-width: $breakpoint--small ) {
+
+  .o-footer {
+    padding: 24px 0;
+  }
+
+}
+
+@media all and ( min-width: $breakpoint--medium ) {
+
+  .o-footer {
+    padding: 48px 0;
+  }
+
+}

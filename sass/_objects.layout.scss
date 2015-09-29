@@ -1,0 +1,27 @@
+/* -----------------------------------------------------------------------------
+
+  CONTAINER OBJECTS
+  
+----------------------------------------------------------------------------- */
+
+.o-container {
+  margin: 0 auto;
+  padding: 0 12px;
+  max-width: 960px;
+}
+
+@media all and ( min-width: $breakpoint--small ) {
+
+  .o-container {
+    padding: 0 24px;
+  }
+
+}
+
+@media all and ( min-width: $breakpoint--medium ) {
+
+  .o-container {
+    padding: 0 48px;
+  }
+
+}
