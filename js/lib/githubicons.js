@@ -1,6 +1,6 @@
 (function(){
   var gitFork = document.createElement("iframe");
-  gitFork.setAttribute( "src", "http://ghbtns.com/github-btn.html?user=callmenick&repo=REPO-NAME&type=fork&count=true" );
+  gitFork.setAttribute( "src", "http://ghbtns.com/github-btn.html?user=callmenick&repo=five-star-rating&type=fork&count=true" );
   gitFork.setAttribute( "allowtransparency", "true" );
   gitFork.setAttribute( "frameborder", "0" );
   gitFork.setAttribute( "scrolling", "0" );
@@ -9,7 +9,7 @@
   document.getElementById("github-icons").appendChild(gitFork);
 
   var gitWatch = document.createElement("iframe");
-  gitWatch.setAttribute( "src", "http://ghbtns.com/github-btn.html?user=callmenick&repo=REPO-NAME&type=watch&count=true" );
+  gitWatch.setAttribute( "src", "http://ghbtns.com/github-btn.html?user=callmenick&repo=five-star-rating&type=watch&count=true" );
   gitWatch.setAttribute( "allowtransparency", "true" );
   gitWatch.setAttribute( "frameborder", "0" );
   gitWatch.setAttribute( "scrolling", "0" );

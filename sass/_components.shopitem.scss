@@ -1,0 +1,40 @@
+/* -----------------------------------------------------------------------------
+
+  COMPENENTS - SHOP ITEM
+  
+----------------------------------------------------------------------------- */
+
+.c-shop-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: solid 1px $color--neutral-xxlight;
+}
+
+.c-shop-item:last-child {
+  margin-bottom: 0;
+}
+
+@media all and ( min-width: $breakpoint--medium ) {
+  
+  .c-shop-item {
+    margin-bottom: 48px;
+  }
+
+}
+
+.c-shop-item__img {
+  flex: 0 0 96px;
+  height: 96px;
+  background-color: $color--neutral-xxlight;
+  border-radius: 100%;
+}
+
+.c-shop-item__details {
+  padding-left: 24px;
+}
+
+.c-shop-item__title {
+  margin: 0 0 12px 0;
+}

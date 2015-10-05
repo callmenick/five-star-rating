@@ -280,6 +280,84 @@ img {
 
 /* -----------------------------------------------------------------------------
 
+  COMPENENTS - SHOP ITEM
+  
+----------------------------------------------------------------------------- */
+.c-shop-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: solid 1px #e7e7e7;
+}
+
+.c-shop-item:last-child {
+  margin-bottom: 0;
+}
+
+@media all and (min-width: 720px) {
+  .c-shop-item {
+    margin-bottom: 48px;
+  }
+}
+
+.c-shop-item__img {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 96px;
+      -ms-flex: 0 0 96px;
+          flex: 0 0 96px;
+  height: 96px;
+  background-color: #e7e7e7;
+  border-radius: 100%;
+}
+
+.c-shop-item__details {
+  padding-left: 24px;
+}
+
+.c-shop-item__title {
+  margin: 0 0 12px 0;
+}
+
+/* -----------------------------------------------------------------------------
+
+  COMPENENTS - RATING
+  
+----------------------------------------------------------------------------- */
+.c-rating {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.c-rating__item {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 24px;
+      -ms-flex: 0 0 24px;
+          flex: 0 0 24px;
+  height: 24px;
+  background: url("../img/stars.svg");
+  background-position: 0 0;
+  cursor: pointer;
+}
+
+.c-rating__item:hover,
+.c-rating__item.is-active {
+  background-position: -24px 0;
+}
+
+/* -----------------------------------------------------------------------------
+
   CARBON AD COMPONENT
   
 ----------------------------------------------------------------------------- */
