@@ -8,7 +8,6 @@
   var gulp = require('gulp');
   var autoprefixer = require('gulp-autoprefixer');
   var cssmin = require('gulp-cssmin');
-  var concat = require('gulp-concat');
   var jshint = require('gulp-jshint');
   var notify = require("gulp-notify");
   var rename = require('gulp-rename');
@@ -66,12 +65,10 @@
   });
 
   /**
-   * Scripts concat
+   * Scripts uglify
    */
-  gulp.task('concat', function() {
+  gulp.task('uglify', function() {
     return gulp.src(paths.scripts)
-      .pipe(concat('main.js'))
-      .pipe(gulp.dest('./js/dist/'))
       .pipe(uglify())
       .pipe(rename({
         suffix: '.min'
@@ -92,7 +89,9 @@
    */
   gulp.task('default', ['styles', 'lint', 'stylesDev', 'scriptsDev']);
   gulp.task('styles:dev', ['styles', 'stylesDev']);
+  gulp.task('styles:build', ['styles']);
   gulp.task('scripts:dev', ['lint', 'scriptsDev']);
-  gulp.task('scripts:build', ['lint', 'concat']);
+  gulp.task('scripts:build', ['lint', 'uglify']);
+  gulp.task('build', ['styles:build', 'scripts:build']);
 
 })();
