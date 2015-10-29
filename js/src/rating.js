@@ -3,157 +3,165 @@
   'use strict';
 
   /**
-   * Rating
-   *
-   * @constructor
-   * @description Creates a new rating widget.
-   * @param {HTMLElement} el The HTML element to build the rating widget on
-   * @param {Number} rating The rating passed in from the data
-   * @param {Object} options  The options hash
-   * @param {Function} callback The callback that gets run after a rating is
-   *   updated
-   */
-  var Rating = function(el, rating, options, callback) {
-    this.el = el;
-    this.rating = rating;
-    this.options = _.extend(this.options, options);
-    this.callback = callback || null;
-    this.starCollection = [];
-    this._init();
-  };
-
-  /**
-   * Rating.prototype.options
+   * rating
    * 
-   * @description The options hash.
-   * @type {Object}
+   * @description The rating component.
+   * @param {HTMLElement} el The HTMl element to build the rating widget on
+   * @param {Number} currentRating The current rating value
+   * @param {Number} maxRating The max rating for the widget
+   * @param {Function} callback The optional callback to run after set rating
+   * @return {Object} Some public methods
    */
-  Rating.prototype.options = {
-    starElement: 'li',
-    starClass: 'c-rating__item',
-    maxRating: 5
-  };
+  function rating(el, currentRating, maxRating, callback) {
+    
+    /**
+     * stars
+     * 
+     * @description The collection of stars in the rating.
+     * @type {Array}
+     */
+    var stars = [];
 
-  /**
-   * Rating.prototype._init
-   *
-   * @description Sets up the rating widget. Returns nothing.
-   */
-  Rating.prototype._init = function() {
-    for (var i = 0; i < this.options.maxRating; i++) {
-      var star = document.createElement(this.options.starElement);
-      
-      star.classList.add(this.options.starClass);
-      star.setAttribute('data-index', i);
-      if (i < this.rating) { star.classList.add('is-active'); }
-      
-      this.el.appendChild(star);
-      this.starCollection.push(star);
-      this._initStarEvents(star);
+    /**
+     * init
+     *
+     * @description Initializes the rating widget. Returns nothing.
+     */
+    (function init() {
+      if (!el) { throw Error('No element supplied.'); }
+      if (!maxRating) { throw Error('No max rating supplied.'); }
+      if (!currentRating) { currentRating = 0; }
+
+      for (var i = 0; i < maxRating; i++) {
+        var star = document.createElement('li');
+        star.classList.add('c-rating__item');
+        star.setAttribute('data-index', i);
+        if (i < currentRating) { star.classList.add('is-active'); }
+        el.appendChild(star);
+        stars.push(star);
+        attachStarEvents(star);
+      }
+    })();
+
+    /**
+     * iterate
+     *
+     * @description A simple iterator used to loop over the stars collection.
+     *   Returns nothing.
+     * @param {Array} collection The collection to be iterated
+     * @param {Function} callback The callback to run on items in the collection
+     */
+    function iterate(collection, callback) {
+      for (var i = 0; i < collection.length; i++) {
+        var item = collection[i];
+        callback(item, i);
+      }
     }
-  };
 
-  /**
-   * Rating.prototype._initStarEvents
-   *
-   * @description Initializes events on stars. Returns nothing.
-   * @param {HTMLElement} star The star to catch events on
-   */
-  Rating.prototype._initStarEvents = function(star) {
-    this._starMouseOver(star);
-    this._starMouseOut(star);
-    this._starClick(star);
-  };
+    /**
+     * attachStarEvents
+     *
+     * @description Attaches events to each star in the collection. Returns
+     *   nothing.
+     * @param {HTMLElement} star The star element
+     */
+    function attachStarEvents(star) {
+      starMouseOver(star);
+      starMouseOut(star);
+      starClick(star);
+    }
 
-  /**
-   * Rating.prototype._starMouseOver
-   *
-   * @description [description]
-   * @param {HTMLElement} star The star to catch events on
-   */
-  Rating.prototype._starMouseOver = function(star) {
-    var scope  = this;
+    /**
+     * starMouseOver
+     *
+     * @description The mouseover event for the star. Returns nothing.
+     * @param {HTMLElement} star The star element
+     */
+    function starMouseOver(star) {
+      star.addEventListener('mouseover', function(e) {
+        iterate(stars, function(item, index) {
+          if (index <= parseInt(star.getAttribute('data-index'))) {
+            item.classList.add('is-active');
+          } else {
+            item.classList.remove('is-active');
+          }
+        });
+      });
+    }
 
-    star.addEventListener('mouseover', function(e) {
-      _.each(scope.starCollection, function(item, index) {
-        if (index <= parseInt(star.getAttribute('data-index'))) {
-          item.classList.add('is-active');
-        } else {
-          item.classList.remove('is-active');
+    /**
+     * starMouseOut
+     *
+     * @description The mouseout event for the star. Returns nothing.
+     * @param {HTMLElement} star The star element
+     */
+    function starMouseOut(star) {
+      star.addEventListener('mouseout', function(e) {
+        if (stars.indexOf(e.relatedTarget) === -1) {
+          setRating();
         }
       });
-    });
-  };
+    }
+
+    /**
+     * starClick
+     *
+     * @description The click event for the star. Returns nothing.
+     * @param {HTMLElement} star The star element
+     */
+    function starClick(star) {
+      star.addEventListener('click', function(e) {
+        e.preventDefault();
+        setRating(parseInt(star.getAttribute('data-index')) + 1, true);
+      });
+    }
+
+    /**
+     * setRating
+     *
+     * @description Sets and updates the currentRating of the widget, and runs
+     *   the callback if supplied. Returns nothing.
+     * @param {Number} value The number to set the rating to
+     * @param {Boolean} doCallback A boolean to determine whether to run the
+     *   callback or not
+     */
+    function setRating(value, doCallback) {
+      currentRating = value || currentRating;
+
+      iterate(stars, function(star, index) {
+        if (index < currentRating) {
+          star.classList.add('is-active');
+        } else {
+          star.classList.remove('is-active');
+        }
+      });
+
+      if (callback && doCallback) { callback(getRating()); }
+    }
+
+    /**
+     * getRating
+     *
+     * @description Gets the current rating.
+     * @return {Number} The current rating
+     */
+    function getRating() {
+      return currentRating;
+    }
+
+    /**
+     * Returns the setRating and getRating methods
+     */
+    return {
+      setRating: setRating,
+      getRating: getRating
+    };
+
+  }
 
   /**
-   * Rating.prototype._starMouseOut
-   *
-   * @description [description]
-   * @param {HTMLElement} star The star to catch events on
+   * Add to global namespace
    */
-  Rating.prototype._starMouseOut = function(star) {
-    var scope  = this;
-
-    star.addEventListener('mouseout', function(e) {
-      if (scope.starCollection.indexOf(e.relatedTarget) === -1) {
-        scope.setRating();
-      }
-    });
-  };
-
-  /**
-   * Rating.prototype._starClick
-   *
-   * @description [description]
-   * @param {HTMLElement} star The star to catch events on
-   */
-  Rating.prototype._starClick = function(star) {
-    var scope  = this;
-
-    star.addEventListener('click', function(e) {
-      e.preventDefault();
-      scope.rating = parseInt(star.getAttribute('data-index')) + 1;
-      scope.setRating();
-
-      if (scope.callback) {
-        scope.callback(scope.getRating());
-      }
-    });
-  };
-
-  /**
-   * Rating.prototype.setRating
-   *
-   * @description [description]
-   */
-  Rating.prototype.setRating = function() {
-    var scope = this;
-
-    _.each(scope.starCollection, function(star, index) {
-      if (index < scope.rating) {
-        star.classList.add('is-active');
-      } else {
-        star.classList.remove('is-active');
-      }
-    });
-  };
-
-  /**
-   * Rating.prototype.getRating
-   *
-   * @description [description]
-   * @return {[type]}
-   */
-  Rating.prototype.getRating = function() {
-    return this.rating;
-  };
-
-  /**
-   * window.Rating
-   *
-   * @description [description]
-   * @type {[type]}
-   */
-  window.Rating = Rating;
+  window.rating = rating;
 
 })();
