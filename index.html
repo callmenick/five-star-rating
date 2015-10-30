@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/rating.min.css">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" href="/favicon.png">
 </head>
@@ -39,13 +40,75 @@
   </div>
 </footer>
 
-<script src="js/lib/underscore-min.js"></script>
-<script src="js/src/rating.js"></script>
-<script src="js/src/main.js"></script>
+<script src="js/dist/rating.min.js"></script>
+<script>
+
+  /**
+   * Demo in action!
+   */
+  (function() {
+
+    'use strict';
+
+    var shop = document.querySelector('#shop');
+    var data = [
+      {
+        title: "Dope Hat",
+        description: "Dope hat dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: 3
+      },
+      {
+        title: "Hot Top",
+        description: "Hot top dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: 2
+      },
+      {
+        title: "Fresh Kicks",
+        description: "Fresh kicks dolor sit amet, consectetur adipisicing elit. Commodi consectetur similique ullam natus ut debitis praesentium.",
+        rating: null
+      }
+    ];
+
+    var init = function(data) {
+      for (var i = 0; i < data.length; i++) {
+        addRatingWidget(buildShopItem(data[i]), data[i]);
+      }
+    };
+
+    var buildShopItem = function(data) {
+      var shopItem = document.createElement('div');
+
+      var html = '<div class="c-shop-item__img"></div>' +
+        '<div class="c-shop-item__details">' +
+          '<h3 class="c-shop-item__title">' + data.title + '</h3>' +
+          '<p class="c-shop-item__description">' + data.description + '</p>' +
+          '<ul class="c-rating"></ul>' +
+        '</div>';
+
+      shopItem.classList.add('c-shop-item');
+      shopItem.innerHTML = html;
+      shop.appendChild(shopItem);
+
+      return shopItem;
+    };
+
+    var addRatingWidget = function(shopItem, data) {
+      var ratingElement = shopItem.querySelector('.c-rating');
+      var currentRating = data.rating;
+      var maxRating = 5;
+      var callback = function(rating) { alert(rating); };
+      var r = rating(ratingElement, currentRating, maxRating, callback);
+    };
+
+    init(data);
+
+  })();
+
+</script>
 
 <!-- EXTERNAL SCRIPTS FOR CALLMENICK.COM, PLEASE DO NOT INCLUDE -->
-<script src="js/lib/githubIcons.js"></script>
-<script src="js/lib/carbonAd.js"></script>
+<script src="js/lib/githubicons.js"></script>
+<script src="js/lib/carbonad.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
