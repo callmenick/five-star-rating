@@ -126,6 +126,8 @@
      *   callback or not
      */
     function setRating(value, doCallback) {
+      if (value && value < 0 || value > maxRating) { return; }
+
       currentRating = value || currentRating;
 
       iterate(stars, function(star, index) {
