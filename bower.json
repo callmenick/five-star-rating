@@ -1,0 +1,36 @@
+{
+  "name": "five-star-rating",
+  "version": "1.0.0",
+  "homepage": "https://github.com/callmenick/five-star-rating",
+  "authors": [
+    "Nick Salloum <nick@callmenick.com>"
+  ],
+  "description": "A five star rating component",
+  "main": "js/dist/rating.min.js",
+  "keywords": [
+    "five",
+    "star",
+    "rating",
+    "javascript",
+    "component",
+    "css"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "fonts",
+    "sass",
+    "css/font-awesome.css",
+    "css/font-awesome.min.css",
+    "css/style.css",
+    "css/style.min.css",
+    "js/lib",
+    "gulpfile.js",
+    "index.html",
+    "package.json"
+  ]
+}
