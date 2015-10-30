@@ -15,8 +15,8 @@
   
 <header class="o-header">
   <nav class="o-header-nav">
-    <a href="#" class="o-header-nav__link"><i class="fa fa-arrow-left"></i> Previous Demo</a>
-    <a href="#" class="o-header-nav__link">Back To Article <i class="fa fa-star"></i></a>
+    <a href="http://callmenick.com/_development/responsive-tabs/" class="o-header-nav__link"><i class="fa fa-arrow-left"></i> Previous Demo</a>
+    <a href="http://callmenick.com/post/five-star-rating-component-with-javascript-css" class="o-header-nav__link">Back To Article <i class="fa fa-star"></i></a>
   </nav>
   <div class="o-container">
     <h1 class="o-header__title">Five Star Rating</h1>
@@ -50,7 +50,10 @@
 
     'use strict';
 
+    // SHOP ELEMENT
     var shop = document.querySelector('#shop');
+
+    // DUMMY DATA
     var data = [
       {
         title: "Dope Hat",
@@ -69,13 +72,15 @@
       }
     ];
 
-    var init = function(data) {
+    // INITIALIZE
+    (function init() {
       for (var i = 0; i < data.length; i++) {
         addRatingWidget(buildShopItem(data[i]), data[i]);
       }
-    };
+    })();
 
-    var buildShopItem = function(data) {
+    // BUILD SHOP ITEM
+    function buildShopItem(data) {
       var shopItem = document.createElement('div');
 
       var html = '<div class="c-shop-item__img"></div>' +
@@ -90,17 +95,16 @@
       shop.appendChild(shopItem);
 
       return shopItem;
-    };
+    }
 
-    var addRatingWidget = function(shopItem, data) {
+    // ADD RATING WIDGET
+    function addRatingWidget(shopItem, data) {
       var ratingElement = shopItem.querySelector('.c-rating');
       var currentRating = data.rating;
       var maxRating = 5;
       var callback = function(rating) { alert(rating); };
       var r = rating(ratingElement, currentRating, maxRating, callback);
-    };
-
-    init(data);
+    }
 
   })();
 
