@@ -31,6 +31,7 @@
       if (!el) { throw Error('No element supplied.'); }
       if (!maxRating) { throw Error('No max rating supplied.'); }
       if (!currentRating) { currentRating = 0; }
+      if (currentRating < 0 || currentRating > maxRating) { throw Error('Current rating is out of bounds.'); }
 
       for (var i = 0; i < maxRating; i++) {
         var star = document.createElement('li');
@@ -98,7 +99,7 @@
     function starMouseOut(star) {
       star.addEventListener('mouseout', function(e) {
         if (stars.indexOf(e.relatedTarget) === -1) {
-          setRating();
+          setRating(null, false);
         }
       });
     }
@@ -127,6 +128,7 @@
      */
     function setRating(value, doCallback) {
       if (value && value < 0 || value > maxRating) { return; }
+      if (doCallback === undefined) { doCallback = true; }
 
       currentRating = value || currentRating;
 
