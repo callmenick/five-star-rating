@@ -130,7 +130,7 @@
       if (value && value < 0 || value > maxRating) { return; }
       if (doCallback === undefined) { doCallback = true; }
 
-      currentRating = value || currentRating;
+      currentRating = typeof value === 'number' ? value : currentRating;
 
       iterate(stars, function(star, index) {
         if (index < currentRating) {
