@@ -5,7 +5,6 @@
 ----------------------------------------------------------------------------- */
 .c-rating {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   list-style: none;
@@ -15,7 +14,6 @@
 
 .c-rating__item {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 24px;
       -ms-flex: 0 0 24px;
           flex: 0 0 24px;
   height: 24px;
