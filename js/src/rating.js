@@ -4,7 +4,7 @@
 
   /**
    * rating
-   * 
+   *
    * @description The rating component.
    * @param {HTMLElement} el The HTMl element to build the rating widget on
    * @param {Number} currentRating The current rating value
@@ -13,10 +13,10 @@
    * @return {Object} Some public methods
    */
   function rating(el, currentRating, maxRating, callback) {
-    
+
     /**
      * stars
-     * 
+     *
      * @description The collection of stars in the rating.
      * @type {Array}
      */
@@ -127,10 +127,10 @@
      *   callback or not
      */
     function setRating(value, doCallback) {
-      if (value && value < 0 || value > maxRating) { return; }
-      if (doCallback === undefined) { doCallback = true; }
 
-      currentRating = value || currentRating;
+      if (isNaN(parseInt(value)) && ( value < 0 || value > maxRating )) { return; }
+      if (doCallback === undefined) { doCallback = true; }
+      currentRating = !isNaN(parseInt(value)) ? value : currentRating;
 
       iterate(stars, function(star, index) {
         if (index < currentRating) {
