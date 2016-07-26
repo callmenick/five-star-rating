@@ -147,11 +147,9 @@ img {
 
 .o-header-nav {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
   background-color: #28aadc;
@@ -223,14 +221,11 @@ img {
 
 .o-sub-nav__items {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row wrap;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
   list-style: none;
@@ -285,11 +280,9 @@ img {
 ----------------------------------------------------------------------------- */
 .c-shop-item {
   display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 12px;
@@ -309,7 +302,6 @@ img {
 
 .c-shop-item__img {
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 96px;
       -ms-flex: 0 0 96px;
           flex: 0 0 96px;
   height: 96px;
