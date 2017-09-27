@@ -1,3 +1,5 @@
+⚠️ NO LONGER MAINTAINED ⚠️
+
 # Five Star Rating
 
 This is a five star rating component built with JavaScript and CSS. It supports hovering over stars and updating the visuals to match, clicking on stars to update the rating, executing a callback after clicking/setting the star rating, and manually setting and getting the star rating. You can use as many of the components on a page as  you want.
