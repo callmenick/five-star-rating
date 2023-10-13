@@ -1,4 +1,5 @@
 import os, time,
+print("Employee finding application")
 
 employee = {"1123":"Jozef Petras","1124":"Rastislav Guláš","1125":"Mária Surová", "1126":"Júlia Kocáková"}
 def looking_name():
@@ -32,8 +33,7 @@ while True:
         print("Vyber si z ponuky 1 - View alebo 2 - Add")  
 
 
-tk.mainloop()          
-tk = "string"   
+
 """
 import pymysql as mys
 
